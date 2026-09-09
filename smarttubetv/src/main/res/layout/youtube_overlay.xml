@@ -1,4 +1,5 @@
-<com.github.vkay94.dtpv.youtube.YouTubeOverlay
+<com.github.vkay94.dtpv.youtube.YouTubeOverlay> 
+ <framelayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/youtube_overlay"
     android:layout_width="match_parent"
