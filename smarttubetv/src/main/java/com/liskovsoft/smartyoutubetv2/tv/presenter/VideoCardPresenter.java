@@ -45,8 +45,8 @@ public class VideoCardPresenter extends LongClickPresenter {
     private int mHeight;
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        Context context = parent.getContext();
+    public viewHolder.view.setBackgroundResource(R.drawable.glass_card_selector);
+viewHolder.view.setClipToOutline(true);
 
         mDefaultBackgroundColor =
             ContextCompat.getColor(context, Helpers.getThemeAttr(context, R.attr.cardDefaultBackground));
