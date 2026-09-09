@@ -68,4 +68,40 @@
     <color name="lb_speech_orb_not_recording">@color/orb_color</color>
     <color name="lb_speech_orb_not_recording_pulsed">@color/orb_bright_color</color>
     <color name="lb_speech_orb_not_recording_icon">@color/orb_icon_color</color>
+    <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  SmartTube Glass UI Redesign Palette
+  ملف الألوان المحدث لمستودع SmartTube
+  يوفر تدرجات زجاجية راقية غير مبالغ فيها وبتباين عالي مناسب للتلفاز
+-->
+<resources>
+    <!-- ألوان الخلفيات العميقة والشبه شفافة (Glass Surfaces) -->
+    <color name="glass_canvas_base">#0B0F19</color>
+    <color name="glass_surface_default">#1A15202B</color>       <!-- 10% أبيض شفاف للبطاقات العادية -->
+    <color name="glass_surface_focused">#38FFFFFF</color>       <!-- 22% أبيض متوهج للبطاقة المحددة -->
+    <color name="glass_surface_player_hud">#B3080C14</color>    <!-- 70% كحلي زجاجي لمشغل الفيديو -->
+    <color name="glass_surface_dialog">#CC0E1424</color>        <!-- 80% زجاج لقوائم الإعدادات -->
+
+    <!-- حدود ولمعات الزجاج (Glass Borders & Highlights) -->
+    <color name="glass_border_subtle">#1AFFFFFF</color>         <!-- حد رفيع 10% لمعة خفيفة -->
+    <color name="glass_border_focused">#80FFFFFF</color>        <!-- حد ساطع عند التحديد بالريموت -->
+    <color name="glass_glow_red">#66E50914</color>              <!-- توهج أحمر يوتيوب راقي للفوكس -->
+    <color name="glass_glow_cyan">#6600E5FF</color>             <!-- خيار بديل للتوهج العصري -->
+
+    <!-- نصوص التلفاز واضحة من مسافة 3 أمتار (10-Foot UI Legibility) -->
+    <color name="tv_text_primary">#F8FAFC</color>               <!-- أبيض مريح للعين -->
+    <color name="tv_text_secondary">#94A3B8</color>             <!-- رمادي بارد للتفاصيل -->
+    <color name="tv_text_tertiary">#64748B</color>
+
+    <!-- ألوان مانع الإعلانات وسبونسربلوك المخصصة (SponsorBlock Segments) -->
+    <color name="sponsorblock_sponsor">#10B981</color>          <!-- مقطع الرعاية (أخضر زمردي زجاجي) -->
+    <color name="sponsorblock_selfpromo">#F59E0B</color>        <!-- ترويج ذاتي (كهرماني) -->
+    <color name="sponsorblock_intro">#3B82F6</color>            <!-- مقدمة / شارة النهاية (أزرق) -->
+    <color name="adblock_shield_active">#059669</color>         <!-- درع منع الإعلانات النشط -->
+
+    <!-- أزرار المشغل الزجاجية -->
+    <color name="glass_btn_normal">#26FFFFFF</color>
+    <color name="glass_btn_focused">#66FFFFFF</color>
+    <color name="glass_btn_pressed">#8CFFFFFF</color>
+</resources>
 </resources>
