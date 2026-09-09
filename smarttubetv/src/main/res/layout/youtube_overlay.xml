@@ -4,4 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="gone"
-    android:background="@drawable/glass_player_hud_overlay/>
+    android:background="@drawable/glass_player_hud_overlay">
