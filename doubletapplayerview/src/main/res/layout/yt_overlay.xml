@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/root_constraint_layout"
-    android:background="@drawable/glass_player_button_selector"
-    android:background="@drawable/glass_player_hud_overlay"
     android:layout_height="match_parent">
 
     <com.github.vkay94.dtpv.youtube.views.CircleClipTapView

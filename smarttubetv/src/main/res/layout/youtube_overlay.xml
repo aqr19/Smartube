@@ -3,6 +3,5 @@
     android:id="@+id/youtube_overlay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"/>
-    <android:background="@drawable/glass_player_button_selector">
-    <android:background="@drawable/glass_player_hud_overlay">
+    android:visibility="gone"
+    android:background="@drawable/glass_player_hud_overlay/>
