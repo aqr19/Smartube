@@ -68,13 +68,7 @@
     <color name="lb_speech_orb_not_recording">@color/orb_color</color>
     <color name="lb_speech_orb_not_recording_pulsed">@color/orb_bright_color</color>
     <color name="lb_speech_orb_not_recording_icon">@color/orb_icon_color</color>
-    <?xml version="1.0" encoding="utf-8"?>
-<!-- 
-  SmartTube Glass UI Redesign Palette
-  ملف الألوان المحدث لمستودع SmartTube
-  يوفر تدرجات زجاجية راقية غير مبالغ فيها وبتباين عالي مناسب للتلفاز
--->
-<resources>
+   
     <!-- ألوان الخلفيات العميقة والشبه شفافة (Glass Surfaces) -->
     <color name="glass_canvas_base">#0B0F19</color>
     <color name="glass_surface_default">#1A15202B</color>       <!-- 10% أبيض شفاف للبطاقات العادية -->
