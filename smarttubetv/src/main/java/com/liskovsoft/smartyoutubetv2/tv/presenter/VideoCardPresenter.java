@@ -87,8 +87,9 @@ public class VideoCardPresenter extends LongClickPresenter {
         
         // تأثير الزجاج الراقي للبطاقة
         cardView.setBackgroundResource(R.drawable.glass_card_selector);
-        cardView.setClipToOutline(true);
-
+if (VERSION.SDK_INT >= 21) {
+    cardView.setClipToOutline(true);
+}
         updateCardBackgroundColor(cardView, false);
         return new ViewHolder(cardView);
     }
