@@ -3,33 +3,38 @@
     <!-- MOD: Focused player button color (default: #66EEEEEE, new: #E8FFFFFF) -->
     <color name="lb_control_button_color">#86EEEEEE</color>
 
-    <!-- Common colors - Glass Canvas & Menus -->
-    <color name="default_background_gradient_start">#080C14</color>
-    <color name="default_background_gradient_end">#0F172A</color>
-    <color name="fastlane_background">#66E50914</color>           <!-- توهج القائمة الجانبية المحددة -->
-    <color name="fastlane_background_dark">#111625</color>      <!-- خلفية القائمة الجانبية زجاج كحلي عميق -->
-    <color name="default_light_grey">#1E293B</color>
-    <color name="search_opaque">#1E293B</color>
+    <!-- Common colors - OLED Deep Dark -->
+    <color name="default_background_gradient_start">#0A0A0A</color>
+    <color name="default_background_gradient_end">#0F0F0F</color>
+    <color name="fastlane_background">#33FFFFFF</color>
+    <color name="fastlane_background_dark">#0D0D0D</color>
+    <color name="default_light_grey">#161616</color>
+    <color name="search_opaque">#161616</color>
     <color name="search_opaque_yellow">#F59E0B</color>
 
-    <!-- Card view colors - Glass Cards -->
-    <color name="card_selected_background_white">#33FFFFFF</color> <!-- بطاقة محددة: زجاج متوهج وليس أبيض مصمت -->
-    <color name="card_selected_background_white_grey">#26FFFFFF</color>
+    <!-- Card view colors - OLED Minimalist -->
+    <color name="card_selected_background_white">#242424</color>
+    <color name="card_selected_background_white_grey">#202020</color>
     <color name="card_selected_background_yellow">#4DF59E0B</color>
-    <color name="card_selected_background_grey">#26FFFFFF</color>
+    <color name="card_selected_background_grey">#202020</color>
     <color name="card_selected_text_black">#FFFFFF</color>
-    <color name="card_selected_text_grey">#F8FAFC</color>
-    <color name="card_default_background">#161D2F</color>       <!-- خلفية البطاقة زجاجية هادئة -->
-    <color name="card_default_background_dark">#131927</color>
-    <color name="card_default_text">#F8FAFC</color>
+    <color name="card_selected_text_grey">#FFFFFF</color>
+    <color name="card_default_background">#161616</color>
+    <color name="card_default_background_dark">#161616</color>
+    <color name="card_default_text">#F1F1F1</color>
 
     <!-- Browse fragment colors - Main TV Screen -->
-    <color name="shelf_background">#0B0F19</color>              <!-- خلفية الشاشة زجاج أسود/كحلي فاخر -->
-    <color name="shelf_background_dark">#080C14</color>
-    <color name="icon_background">#1E293B</color>
-    <color name="icon_alt_background">#0F172A</color>
-    <color name="player_background">#CC080C14</color>
+    <color name="shelf_background">#0A0A0A</color>
+    <color name="shelf_background_dark">#0A0A0A</color>
+    <color name="icon_background">#161616</color>
+    <color name="icon_alt_background">#0F0F0F</color>
+    <color name="player_background">#E60A0A0A</color>
 
+    <!-- Text & Border Tokens -->
+    <color name="lb_basic_card_title_text_color">#F1F1F1</color>
+    <color name="lb_basic_card_content_text_color">#AAAAAA</color>
+    <color name="glass_border_subtle">#14FFFFFF</color>
+    <color name="glass_border_focused">#E0E0E0</color>
     <!-- Dark & OLED color schemes - تطبيق الشكل حتى لو كان الثيم رمادي أو أوليد -->
     <color name="scheme_grey_background">#111625</color>
     <color name="scheme_grey_background_dark">#111625</color>   <!-- القائمة الجانبية -->
@@ -76,8 +81,10 @@
     <color name="glass_surface_dialog">#CC0E1424</color>        <!-- 80% زجاج لقوائم الإعدادات -->
 
     <!-- حدود ولمعات الزجاج (Glass Borders & Highlights) -->
-    <color name="glass_border_subtle">#1AFFFFFF</color>         <!-- حد رفيع 10% لمعة خفيفة -->
-    <color name="glass_border_focused">#80FFFFFF</color>        <!-- حد ساطع عند التحديد بالريموت -->
+   <color name="glass_border_subtle">#14FFFFFF</color>         <!-- إطار خفيف 8% لمعة محايدة -->
+    <color name="glass_border_focused">#E0E0E0</color>          <!-- إطار ناصع أبيض عند التركيز بالريموت -->
+    <color name="lb_basic_card_title_text_color">#F1F1F1</color>
+    <color name="lb_basic_card_content_text_color">#AAAAAA</color>        <!-- حد ساطع عند التحديد بالريموت -->
     <color name="glass_glow_red">#66E50914</color>              <!-- توهج أحمر يوتيوب راقي للفوكس -->
     <color name="glass_glow_cyan">#6600E5FF</color>             <!-- خيار بديل للتوهج العصري -->
 

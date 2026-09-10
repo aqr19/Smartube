@@ -82,7 +82,11 @@
     ListRowPresenter which gives you some ability to change corner radius and focused and unfocused z.
     -->
     <dimen name="lb_rounded_rect_corner_radius">12dp</dimen>
-
+<!-- إلغاء الظلال والـ Drop Shadows تماماً من النظام -->
+    <dimen name="lb_browse_headers_elevation">0dp</dimen>
+    <dimen name="lb_card_selected_elevation">0dp</dimen>
+    <dimen name="lb_preference_decor_elevation">0dp</dimen>
+    <dimen name="lb_preference_decor_title_container_elevation">0dp</dimen>
     <!-- MOD: Zoom factor of focused button (SearchOrbView, default: 120%) -->
     <!--<item name="lb_search_orb_focused_zoom" type="fraction">120%</item>-->
 
