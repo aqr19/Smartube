@@ -1,9 +1,10 @@
 name: Build Debug APK
+
 on:
   push:
     branches: [ master ]
   workflow_dispatch:
-  
+
 permissions:
   contents: write
 
@@ -26,6 +27,14 @@ jobs:
     - name: Grant Gradle permissions
       run: chmod +x gradlew
 
+    - name: Setup Fixed Keystore
+      run: |
+        keytool -genkey -v -keystore smarttubetv/fixed_debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+        echo "storeFile=fixed_debug.keystore" > keystore.properties
+        echo "storePassword=android" >> keystore.properties
+        echo "keyAlias=androiddebugkey" >> keystore.properties
+        echo "keyPassword=android" >> keystore.properties
+
     - name: Build Debug APK
       run: ./gradlew clean assembleStfdroidDebug --stacktrace
 
@@ -35,4 +44,4 @@ jobs:
         tag_name: latest
         name: SmartTube latest debug build
         prerelease: true
-        files: smarttubetv/build/outputs/apk/stfdroid/debug/*universal*.apk
+        files: smarttubetv/build/outputs/apk/stfdroid/debug/*universal*.apkd/outputs/apk/stfdroid/debug/*universal*.apk
