@@ -44,9 +44,9 @@ public class VideoCardPresenter extends LongClickPresenter {
     private int mWidth;
     private int mHeight;
 
-    @Override
-    public viewHolder.view.setBackgroundResource(R.drawable.glass_card_selector);
-viewHolder.view.setClipToOutline(true);
+   @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+        Context context = parent.getContext();
 
         mDefaultBackgroundColor =
             ContextCompat.getColor(context, Helpers.getThemeAttr(context, R.attr.cardDefaultBackground));
@@ -84,10 +84,11 @@ viewHolder.view.setClipToOutline(true);
         cardView.enableBadge(isBadgeEnabled());
         cardView.enableTitle(isTitleEnabled());
         cardView.enableContent(isContentEnabled());
-        cardView.setBackgroundColor(mDefaultBackgroundColor); // background is temporarily visible during animations
-        //if (VERSION.SDK_INT >= 23 && MainUIData.instance(context).isUiTweakEnabled(MainUIData.UI_TWEAK_ROUNDED_CORNERS)) {
-        //    cardView.setForeground(ContextCompat.getDrawable(context, R.drawable.lb_card_outline));
-        //}
+        
+        // تأثير الزجاج الراقي للبطاقة
+        cardView.setBackgroundResource(R.drawable.glass_card_selector);
+        cardView.setClipToOutline(true);
+
         updateCardBackgroundColor(cardView, false);
         return new ViewHolder(cardView);
     }
