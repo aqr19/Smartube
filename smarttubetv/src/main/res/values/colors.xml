@@ -57,15 +57,16 @@
     <color name="foreground_material_dark_mod">@android:color/white</color>
     <color name="foreground_material_light_mod">@android:color/black</color>
 
-    <!-- Default Orb buttons colors: search, accounts, search settings etc -->
-    <color name="orb_color">@color/grey</color>
-    <color name="orb_bright_color">@color/grey</color>
-    <color name="orb_icon_color">@color/white</color>
+   <!-- Default Orb buttons: Search, Accounts, Settings (Nuvio Glass Action Buttons) -->
+    <color name="orb_color">#182030</color>
+    <color name="orb_bright_color">#3D4D6B</color>
+    <color name="orb_icon_color">#F8FAFC</color>
+    <color name="lb_speech_orb_not_recording">#182030</color>
+    <color name="lb_speech_orb_not_recording_pulsed">#3D4D6B</color>
+    <color name="lb_speech_orb_not_recording_icon">#F8FAFC</color>
 
-    <!-- Search page mic button color -->
-    <color name="lb_speech_orb_not_recording">@color/orb_color</color>
-    <color name="lb_speech_orb_not_recording_pulsed">@color/orb_bright_color</color>
-    <color name="lb_speech_orb_not_recording_icon">@color/orb_icon_color</color>
+    <!-- Nuvio Glass Dialog Background -->
+    <color name="lb_preference_decor_list_background">#0E1424</color>
    
     <!-- ألوان الخلفيات العميقة والشبه شفافة (Glass Surfaces) -->
     <color name="glass_canvas_base">#0B0F19</color>
