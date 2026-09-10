@@ -3,49 +3,44 @@
     <!-- MOD: Focused player button color (default: #66EEEEEE, new: #E8FFFFFF) -->
     <color name="lb_control_button_color">#86EEEEEE</color>
 
-    <!-- Common colors -->
-    <color name="default_background_gradient_start">#000000</color>
-    <color name="default_background_gradient_end">#DDDDDD</color>
-    <color name="fastlane_background">#0096a6</color>
-    <color name="fastlane_background_dark">#004B53</color>
-    <color name="default_light_grey">#343434</color>
-    <color name="search_opaque">#0096a6</color>
-    <color name="search_opaque_yellow">#ffaa3f</color>
+    <!-- Common colors - Glass Canvas & Menus -->
+    <color name="default_background_gradient_start">#080C14</color>
+    <color name="default_background_gradient_end">#0F172A</color>
+    <color name="fastlane_background">#66E50914</color>           <!-- توهج القائمة الجانبية المحددة -->
+    <color name="fastlane_background_dark">#111625</color>      <!-- خلفية القائمة الجانبية زجاج كحلي عميق -->
+    <color name="default_light_grey">#1E293B</color>
+    <color name="search_opaque">#1E293B</color>
+    <color name="search_opaque_yellow">#F59E0B</color>
 
-    <!-- Card view colors -->
-    <color name="card_selected_background_white">#FFFFFF</color>
-    <color name="card_selected_background_white_grey">#D3D3D3</color>
-    <color name="card_selected_background_yellow">#ffaa3f</color>
-    <color name="card_selected_background_grey">#343434</color>
-    <color name="card_selected_text_black">#000000</color>
-    <color name="card_selected_text_grey">#343434</color>
-    <color name="card_default_background">#0096a6</color>
-    <color name="card_default_background_dark">#004B53</color>
-    <color name="card_default_text">#FFFFFF</color>
+    <!-- Card view colors - Glass Cards -->
+    <color name="card_selected_background_white">#33FFFFFF</color> <!-- بطاقة محددة: زجاج متوهج وليس أبيض مصمت -->
+    <color name="card_selected_background_white_grey">#26FFFFFF</color>
+    <color name="card_selected_background_yellow">#4DF59E0B</color>
+    <color name="card_selected_background_grey">#26FFFFFF</color>
+    <color name="card_selected_text_black">#FFFFFF</color>
+    <color name="card_selected_text_grey">#F8FAFC</color>
+    <color name="card_default_background">#161D2F</color>       <!-- خلفية البطاقة زجاجية هادئة -->
+    <color name="card_default_background_dark">#131927</color>
+    <color name="card_default_text">#F8FAFC</color>
 
-    <!-- Browse fragment colors -->
-    <color name="shelf_background">#282828</color>
-    <color name="shelf_background_dark">#131313</color>
-    <color name="icon_background">#4A4F51</color>
-    <color name="icon_alt_background">#2A2F51</color>
-    <color name="player_background">#FF000000</color>
+    <!-- Browse fragment colors - Main TV Screen -->
+    <color name="shelf_background">#0B0F19</color>              <!-- خلفية الشاشة زجاج أسود/كحلي فاخر -->
+    <color name="shelf_background_dark">#080C14</color>
+    <color name="icon_background">#1E293B</color>
+    <color name="icon_alt_background">#0F172A</color>
+    <color name="player_background">#CC080C14</color>
 
-    <!-- Dark color scheme -->
-    <color name="scheme_grey_background">#181818</color>
-    <color name="scheme_grey_background_dark">#181818</color>
-    <color name="scheme_grey_shelf_background_dark">#000000</color>
-    <color name="scheme_grey_card_background_dark">#121212</color>
+    <!-- Dark & OLED color schemes - تطبيق الشكل حتى لو كان الثيم رمادي أو أوليد -->
+    <color name="scheme_grey_background">#111625</color>
+    <color name="scheme_grey_background_dark">#111625</color>   <!-- القائمة الجانبية -->
+    <color name="scheme_grey_shelf_background_dark">#080C14</color> <!-- خلفية الشاشة -->
+    <color name="scheme_grey_card_background_dark">#161D2F</color>  <!-- البطاقات -->
 
     <!-- Red color scheme -->
-    <color name="scheme_red_background">#131313</color>
-    <color name="scheme_red_background_dark">@color/dark_red</color>
-    <color name="scheme_red_shelf_background_dark">#131313</color>
-    <color name="scheme_red_card_background_dark">#36474f</color>
-
-    <!-- Blue color scheme -->
-    <color name="scheme_blue_background">#33B5E5</color>
-    <color name="scheme_blue_background_dark">#207EA1</color>
-
+    <color name="scheme_red_background">#111625</color>
+    <color name="scheme_red_background_dark">#161D2F</color>
+    <color name="scheme_red_shelf_background_dark">#080C14</color>
+    <color name="scheme_red_card_background_dark">#161D2F</color>
     <!-- Vineyard -->
     <color name="black_87pc">#77000000</color>
     <color name="primary_dark">#00796B</color>
