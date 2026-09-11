@@ -75,8 +75,6 @@
         android:orientation="vertical"
         android:paddingStart="?attr/browsePaddingStart"
         android:paddingEnd="?attr/browsePaddingEnd"
-        android:clipChildren="false"
-        android:clipToPadding="false"
         android:background="@drawable/nuvio_player_scrim"
         android:paddingBottom="24dp"
         android:clipChildren="false"
