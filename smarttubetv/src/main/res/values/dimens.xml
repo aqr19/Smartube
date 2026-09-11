@@ -146,4 +146,7 @@
     <dimen name="lb_control_button_height">44dp</dimen>
     <dimen name="lb_control_icon_width">22dp</dimen>
     <dimen name="lb_control_icon_height">22dp</dimen>
+    <!-- جعل خلفية المشغل الأساسية شفافة لظهور التدرج السينمائي النقي -->
+    <color name="lb_playback_controls_background_dark">#00000000</color>
+    <color name="lb_playback_controls_background_light">#00000000</color>
 </resources>
