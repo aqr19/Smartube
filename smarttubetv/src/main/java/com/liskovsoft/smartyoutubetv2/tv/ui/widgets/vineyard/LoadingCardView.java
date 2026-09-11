@@ -9,16 +9,18 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import androidx.leanback.widget.BaseCardView;
 import com.liskovsoft.smartyoutubetv2.tv.R;
-import com.liskovsoft.smartyoutubetv2.tv.ui.browse.video.GridFragmentHelper;
 
 public class LoadingCardView extends BaseCardView {
     private View mSkeletonRoot;
     private View mThumbnailView;
     private Animation mShimmerAnimation;
 
-    public LoadingCardView(Context context, int styleResId) {
-        super(new ContextThemeWrapper(context, styleResId), null, 0);
-        buildLoadingCardView();
+    public LoadingCardView(Context context) {
+        this(context, null);
+    }
+
+    public LoadingCardView(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
     public LoadingCardView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -26,37 +28,46 @@ public class LoadingCardView extends BaseCardView {
         buildLoadingCardView();
     }
 
+    public LoadingCardView(Context context, int styleResId) {
+        super(new ContextThemeWrapper(context, styleResId), null, 0);
+        buildLoadingCardView();
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
     private void buildLoadingCardView() {
         setFocusable(false);
         setFocusableInTouchMode(false);
         setCardType(CARD_TYPE_MAIN_ONLY);
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.view_loading_card, this);
         mSkeletonRoot = view.findViewById(R.id.skeleton_root);
         mThumbnailView = view.findViewById(R.id.skeleton_thumbnail);
 
-        mShimmerAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.skeleton_shimmer);
-        if (mSkeletonRoot != null && mShimmerAnimation != null) {
-            mSkeletonRoot.startAnimation(mShimmerAnimation);
-        }
-        updateDimensions();
-    }
-
-    private void updateDimensions() {
-        if (mThumbnailView != null) {
-            int[] dimens = GridFragmentHelper.getCardDimensPx(getContext());
-            if (dimens != null && dimens.length >= 2 && dimens[0] > 0 && dimens[1] > 0) {
-                mThumbnailView.getLayoutParams().width = dimens[0];
-                mThumbnailView.getLayoutParams().height = dimens[1];
+        try {
+            mShimmerAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.skeleton_shimmer);
+            if (mSkeletonRoot != null && mShimmerAnimation != null) {
+                mSkeletonRoot.startAnimation(mShimmerAnimation);
             }
+        } catch (Exception e) {
+            // ignore
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    public void isLoading(boolean isLoading) {
         if (mSkeletonRoot != null) {
-            mSkeletonRoot.clearAnimation();
+            mSkeletonRoot.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            if (isLoading) {
+                if (mShimmerAnimation != null) {
+                    mSkeletonRoot.startAnimation(mShimmerAnimation);
+                }
+            } else {
+                mSkeletonRoot.clearAnimation();
+            }
         }
     }
 
@@ -65,6 +76,14 @@ public class LoadingCardView extends BaseCardView {
         super.onAttachedToWindow();
         if (mSkeletonRoot != null && mShimmerAnimation != null) {
             mSkeletonRoot.startAnimation(mShimmerAnimation);
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mSkeletonRoot != null) {
+            mSkeletonRoot.clearAnimation();
         }
     }
 }
