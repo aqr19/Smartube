@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- الزر عند الوقوف عليه بالريموت (Focused): أبيض ناصع مضيء بنقاء -->
+    <item android:state_focused="true">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+            <stroke android:width="2dp" android:color="#FFFFFF" />
+            <size android:width="44dp" android:height="44dp" />
+        </shape>
+    </item>
+
+    <!-- الزر في الوضع العادي (Normal): دائرة زجاجية معتمة بخفة وأناقة -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#24FFFFFF" />
+            <stroke android:width="1dp" android:color="#1AFFFFFF" />
+            <size android:width="44dp" android:height="44dp" />
+        </shape>
+    </item>
+</selector>

@@ -1,79 +1,70 @@
 package com.liskovsoft.smartyoutubetv2.tv.ui.widgets.vineyard;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ProgressBar;
-
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.leanback.widget.BaseCardView;
 import com.liskovsoft.smartyoutubetv2.tv.R;
+import com.liskovsoft.smartyoutubetv2.tv.ui.browse.video.GridFragmentHelper;
 
 public class LoadingCardView extends BaseCardView {
-
-    private ProgressBar mProgressBar;
+    private View mSkeletonRoot;
+    private View mThumbnailView;
+    private Animation mShimmerAnimation;
 
     public LoadingCardView(Context context, int styleResId) {
         super(new ContextThemeWrapper(context, styleResId), null, 0);
-        buildLoadingCardView(styleResId);
+        buildLoadingCardView();
     }
 
     public LoadingCardView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(getStyledContext(context, attrs, defStyleAttr), attrs, defStyleAttr);
-        buildLoadingCardView(getImageCardViewStyle(context, attrs, defStyleAttr));
+        super(context, attrs, defStyleAttr);
+        buildLoadingCardView();
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    private void buildLoadingCardView(int styleResId) {
+    private void buildLoadingCardView() {
         setFocusable(false);
         setFocusableInTouchMode(false);
         setCardType(CARD_TYPE_MAIN_ONLY);
-        setBackgroundResource(R.color.primary_light);
-
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.view_loading_card, this);
-        TypedArray cardAttrs =
-                getContext().obtainStyledAttributes(
-                        styleResId, R.styleable.lbImageCardView);
+        View view = inflater.inflate(R.layout.view_loading_card, this);
+        mSkeletonRoot = view.findViewById(R.id.skeleton_root);
+        mThumbnailView = view.findViewById(R.id.skeleton_thumbnail);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_indicator);
-        cardAttrs.recycle();
-    }
-
-    public void isLoading(boolean isLoading) {
-        mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-    }
-
-    private static Context getStyledContext(Context context, AttributeSet attrs, int defStyleAttr) {
-        int style = getImageCardViewStyle(context, attrs, defStyleAttr);
-        return new ContextThemeWrapper(context, style);
-    }
-
-    private static int getImageCardViewStyle(Context context, AttributeSet attrs, int defStyleAttr) {
-        int style = null == attrs ? 0 : attrs.getStyleAttribute();
-        if (0 == style) {
-            TypedArray styledAttrs =
-                    context.obtainStyledAttributes(
-                            R.styleable.LeanbackTheme);
-            style = styledAttrs.getResourceId(
-                            R.styleable.LeanbackTheme_imageCardViewStyle, 0);
-            styledAttrs.recycle();
+        mShimmerAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.skeleton_shimmer);
+        if (mSkeletonRoot != null && mShimmerAnimation != null) {
+            mSkeletonRoot.startAnimation(mShimmerAnimation);
         }
-        return style;
+        updateDimensions();
     }
 
-    public LoadingCardView(Context context) {
-        this(context, null);
+    private void updateDimensions() {
+        if (mThumbnailView != null) {
+            int[] dimens = GridFragmentHelper.getCardDimensPx(getContext());
+            if (dimens != null && dimens.length >= 2 && dimens[0] > 0 && dimens[1] > 0) {
+                mThumbnailView.getLayoutParams().width = dimens[0];
+                mThumbnailView.getLayoutParams().height = dimens[1];
+            }
+        }
     }
 
-    public LoadingCardView(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.imageCardViewStyle);
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mSkeletonRoot != null) {
+            mSkeletonRoot.clearAnimation();
+        }
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (mSkeletonRoot != null && mShimmerAnimation != null) {
+            mSkeletonRoot.startAnimation(mShimmerAnimation);
+        }
+    }
 }

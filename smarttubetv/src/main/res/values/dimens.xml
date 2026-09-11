@@ -138,4 +138,12 @@
     <dimen name="tooltip_vertical_padding_mod">6.5dp</dimen>
     <dimen name="tooltip_y_offset_non_touch_mod">0dp</dimen>
     <dimen name="tooltip_y_offset_touch_mod">16dp</dimen>
+    <!-- مقاسات شريط مشغل NuvioTV فائق النحافة -->
+    <dimen name="lb_playback_transport_progressbar_bar_height">3.5dp</dimen>
+    <dimen name="lb_playback_transport_progressbar_active_bar_height">5.5dp</dimen>
+    <dimen name="lb_playback_transport_progressbar_active_radius">6.5dp</dimen>
+    <dimen name="lb_control_button_diameter">44dp</dimen>
+    <dimen name="lb_control_button_height">44dp</dimen>
+    <dimen name="lb_control_icon_width">22dp</dimen>
+    <dimen name="lb_control_icon_height">22dp</dimen>
 </resources>

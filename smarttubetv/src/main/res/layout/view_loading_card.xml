@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/skeleton_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/glass_card_selector"
+    android:padding="0dp">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:id="@+id/progress_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:padding="36dp"/>
+    <!-- مستطيل صورة الفيديو المصغرة في حالة التحميل -->
+    <View
+        android:id="@+id/skeleton_thumbnail"
+        android:layout_width="@dimen/card_width"
+        android:layout_height="@dimen/card_height"
+        android:background="@color/card_default_background" />
 
-</RelativeLayout>
+    <!-- مساحة نصوص العنوان والقناة في حالة التحميل -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lb_basic_card_info_height"
+        android:orientation="vertical"
+        android:padding="@dimen/lb_basic_card_info_padding"
+        android:background="@color/card_default_background_dark">
+
+        <!-- خط هيكلي يمثل عنوان الفيديو -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/fastlane_background" />
+
+        <!-- خط هيكلي أقصر يمثل اسم القناة والمشاهدات -->
+        <View
+            android:layout_width="120dp"
+            android:layout_height="10dp"
+            android:background="@color/fastlane_background_dark" />
+    </LinearLayout>
+</LinearLayout>
