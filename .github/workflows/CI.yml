@@ -1,3 +1,13 @@
+# =========================================================
+# Build Debug APK — SmartTube (Modern fork)
+# يبني نسخة تجريبية (Debug) بتوقيع ثابت، وينشرها كرابط
+# تحميل مباشر بصفحة Releases باسم "latest" (يتحدث تلقائياً
+# كل مرة يشتغل فيها هذا الملف).
+#
+# ⚠️ مهم: لا تحذف خطوة "Publish direct download release"
+# تحتها — هذي اللي تنشر الرابط اللي نستخدمه بتطبيق Downloader.
+# =========================================================
+
 name: Build Debug APK
 
 on:
@@ -5,6 +15,7 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+# لازم هذا السطر عشان نقدر ننشر Release
 permissions:
   contents: write
 
@@ -12,36 +23,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: 17
-        distribution: temurin
-        cache: gradle
+      # 1) تنزيل الكود كامل + المكتبات الفرعية (SharedModules, MediaServiceCore)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-    - name: Grant Gradle permissions
-      run: chmod +x gradlew
+      # 2) تجهيز بيئة جافا اللازمة للبناء
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: gradle
 
-    - name: Setup Fixed Keystore
-      run: |
-        keytool -genkey -v -keystore smarttubetv/fixed_debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-        echo "storeFile=fixed_debug.keystore" > keystore.properties
-        echo "storePassword=android" >> keystore.properties
-        echo "keyAlias=androiddebugkey" >> keystore.properties
-        echo "keyPassword=android" >> keystore.properties
+      # 3) صلاحية تشغيل أداة البناء
+      - name: Grant Gradle permissions
+        run: chmod +x gradlew
 
-    - name: Build Debug APK
-      run: ./gradlew clean assembleStfdroidDebug --stacktrace
+      # 4) البناء الفعلي — نسخة Debug موقّعة بمفتاحنا الثابت
+      #    (fixed-debug.keystore) عشان التحديثات تركب فوق بعض
+      - name: Build Debug APK
+        run: ./gradlew clean assembleStfdroidDebug --stacktrace
 
-    - name: Publish direct download release
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: latest
-        name: SmartTube latest debug build
-        prerelease: true
-        files: smarttubetv/build/outputs/apk/stfdroid/debug/*universal*.apkd/outputs/apk/stfdroid/debug/*universal*.apk
+      # 5) نشر ملف الـ APK كرابط تحميل مباشر بصفحة Releases
+      #    ⚠️ هذي الخطوة هي اللي لازم تبقى — لا تُحذف
+      - name: Publish direct download release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: SmartTube latest debug build
+          prerelease: true
+          files: smarttubetv/build/outputs/apk/stfdroid/debug/*universal*.apk
