@@ -390,7 +390,7 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         } catch (Throwable ignored) {}
     }
 
-   public void showProgressBar(boolean show) {
+  public void showProgressBar(boolean show) {
         if (show) {
             scheduleSkeleton();
         } else {
@@ -457,6 +457,7 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         } catch (Throwable t) {
             Log.e(TAG, "Safe fallback: skeleton error suppressed: %s", t.getMessage());
         }
+    }
     }
         if (mSkeletonView == null && visible) {
             ViewGroup root = (ViewGroup) getView();
