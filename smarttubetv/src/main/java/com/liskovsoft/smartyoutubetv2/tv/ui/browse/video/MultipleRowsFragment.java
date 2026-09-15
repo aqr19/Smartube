@@ -390,6 +390,42 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         } catch (Throwable ignored) {}
     }
 
+   public void showProgressBar(boolean show) {
+        if (show) {
+            scheduleSkeleton();
+        } else {
+            cancelSkeletonSchedule();
+            setSkeletonVisible(false);
+        }
+    }
+
+    private void scheduleSkeleton() {
+        cancelSkeletonSchedule();
+        try {
+            if (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0)) {
+                return;
+            }
+            mShowSkeletonRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    setSkeletonVisible(true);
+                }
+            };
+            if (getView() != null) {
+                getView().postDelayed(mShowSkeletonRunnable, 250);
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    private void cancelSkeletonSchedule() {
+        try {
+            if (mShowSkeletonRunnable != null && getView() != null) {
+                getView().removeCallbacks(mShowSkeletonRunnable);
+                mShowSkeletonRunnable = null;
+            }
+        } catch (Throwable ignored) {}
+    }
+
     private void setSkeletonVisible(boolean visible) {
         try {
             View root = getView();
@@ -397,16 +433,8 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
                 return;
             }
 
-            // البحث عن ProgressBar الأصلي في الواجهة لاستبداله بدون كسر الشجرة
-            View progress = root.findViewById(androidx.leanback.R.id.progress_bar);
-            if (progress != null) {
-                progress.setVisibility(View.GONE);
-            }
-
             if (mSkeletonView == null && visible) {
-                // العثور على الحاوية الأب الآمنة (parent container)
-                View parentView = root.findViewById(androidx.leanback.R.id.rows_frame);
-                ViewGroup target = (parentView instanceof ViewGroup) ? (ViewGroup) parentView : (root instanceof ViewGroup ? (ViewGroup) root : null);
+                ViewGroup target = (root instanceof ViewGroup) ? (ViewGroup) root : null;
                 if (target != null) {
                     mSkeletonView = LayoutInflater.from(getContext()).inflate(R.layout.skeleton_container, target, false);
                     target.addView(mSkeletonView);
@@ -427,44 +455,9 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
                 }
             }
         } catch (Throwable t) {
-            Log.e(TAG, "Safe fallback: skeleton error suppressed to prevent crash: %s", t.getMessage());
+            Log.e(TAG, "Safe fallback: skeleton error suppressed: %s", t.getMessage());
         }
     }
-
-    public void showProgressBar(boolean show) {
-        if (show) {
-            scheduleSkeleton();
-        } else {
-            cancelSkeletonSchedule();
-            setSkeletonVisible(false);
-        }
-    }
-
-    private void scheduleSkeleton() {
-        cancelSkeletonSchedule();
-        if (getView() == null || (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0))) {
-            return;
-        }
-        mShowSkeletonRunnable = new Runnable() {
-            @Override
-            public void run() {
-                setSkeletonVisible(true);
-            }
-        };
-        getView().postDelayed(mShowSkeletonRunnable, 250);
-    }
-
-    private void cancelSkeletonSchedule() {
-        if (mShowSkeletonRunnable != null && getView() != null) {
-            getView().removeCallbacks(mShowSkeletonRunnable);
-            mShowSkeletonRunnable = null;
-        }
-    }
-
-    private void setSkeletonVisible(boolean visible) {
-        if (getView() == null || getContext() == null) {
-            return;
-        }
         if (mSkeletonView == null && visible) {
             ViewGroup root = (ViewGroup) getView();
             mSkeletonView = LayoutInflater.from(getContext()).inflate(R.layout.skeleton_container, root, false);
