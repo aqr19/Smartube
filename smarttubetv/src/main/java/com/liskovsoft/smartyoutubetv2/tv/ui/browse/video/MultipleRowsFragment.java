@@ -15,7 +15,12 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 import androidx.leanback.widget.RowPresenter.ViewHolder;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import com.liskovsoft.smartyoutubetv2.tv.R;
 import com.liskovsoft.sharedutils.helpers.Helpers;
 import com.liskovsoft.sharedutils.mylogger.Log;
 import com.liskovsoft.smartyoutubetv2.common.app.models.data.Video;
@@ -52,6 +57,8 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
     private ShortsCardPresenter mShortsPresenter;
     private int mSelectedRowIndex = -1;
     private ChannelHeaderCallback mChannelHeaderCallback;
+    private View mSkeletonView;
+    private Runnable mShowSkeletonRunnable;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +72,24 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         setupAdapter();
         setupEventListeners();
         applyPendingUpdates();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (isEmpty()) {
+            scheduleSkeleton();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        cancelSkeletonSchedule();
+        if (mSkeletonView != null) {
+            mSkeletonView.clearAnimation();
+            mSkeletonView = null;
+        }
+        super.onDestroyView();
     }
 
     protected void addHeader(ChannelHeaderCallback callback) {
@@ -122,8 +147,10 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
             mVideoGroupAdapters.clear();
         }
 
-        // Reset the position (bug appeared after fragment been reused)
+       // Reset the position (bug appeared after fragment been reused)
         setPosition(mChannelHeaderCallback != null ? 1 : 0);
+
+        scheduleSkeleton();
     }
 
     private void removeByIndex(int idx) {
@@ -243,9 +270,12 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
             return;
         }
 
-        if (group.isEmpty()) {
+         if (group.isEmpty()) {
             return;
         }
+
+        cancelSkeletonSchedule();
+        setSkeletonVisible(false);
 
         VideoGroupObjectAdapter existingAdapter = GridFragmentHelper.findRelatedAdapter(mVideoGroupAdapters, group, this::freeze);
 
@@ -320,8 +350,62 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         }
     }
 
-    private MainUIData getMainUIData() {
+  private MainUIData getMainUIData() {
         return MainUIData.instance(getContext());
+    }
+
+    public void showProgressBar(boolean show) {
+        if (show) {
+            scheduleSkeleton();
+        } else {
+            cancelSkeletonSchedule();
+            setSkeletonVisible(false);
+        }
+    }
+
+    private void scheduleSkeleton() {
+        cancelSkeletonSchedule();
+        if (getView() == null || (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0))) {
+            return;
+        }
+        mShowSkeletonRunnable = new Runnable() {
+            @Override
+            public void run() {
+                setSkeletonVisible(true);
+            }
+        };
+        getView().postDelayed(mShowSkeletonRunnable, 250);
+    }
+
+    private void cancelSkeletonSchedule() {
+        if (mShowSkeletonRunnable != null && getView() != null) {
+            getView().removeCallbacks(mShowSkeletonRunnable);
+            mShowSkeletonRunnable = null;
+        }
+    }
+
+    private void setSkeletonVisible(boolean visible) {
+        if (getView() == null || getContext() == null) {
+            return;
+        }
+        if (mSkeletonView == null && visible) {
+            ViewGroup root = (ViewGroup) getView();
+            mSkeletonView = LayoutInflater.from(getContext()).inflate(R.layout.skeleton_container, root, false);
+            root.addView(mSkeletonView);
+        }
+        if (mSkeletonView != null) {
+            if (visible) {
+                mSkeletonView.setVisibility(View.VISIBLE);
+                AlphaAnimation shimmer = new AlphaAnimation(0.35f, 0.7f);
+                shimmer.setDuration(900);
+                shimmer.setRepeatMode(Animation.REVERSE);
+                shimmer.setRepeatCount(Animation.INFINITE);
+                mSkeletonView.startAnimation(shimmer);
+            } else {
+                mSkeletonView.clearAnimation();
+                mSkeletonView.setVisibility(View.GONE);
+            }
+        }
     }
 
     private final class ItemViewLongPressedListener implements OnItemLongPressedListener {
