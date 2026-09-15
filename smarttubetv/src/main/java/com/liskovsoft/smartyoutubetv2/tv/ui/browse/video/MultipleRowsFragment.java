@@ -353,6 +353,83 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
   private MainUIData getMainUIData() {
         return MainUIData.instance(getContext());
     }
+    public void showProgressBar(boolean show) {
+        if (show) {
+            scheduleSkeleton();
+        } else {
+            cancelSkeletonSchedule();
+            setSkeletonVisible(false);
+        }
+    }
+
+    private void scheduleSkeleton() {
+        cancelSkeletonSchedule();
+        try {
+            // تجنب تفعيل السكيليتون إذا كان هناك صفوف موجودة بالفعل
+            if (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0)) {
+                return;
+            }
+            mShowSkeletonRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    setSkeletonVisible(true);
+                }
+            };
+            if (getView() != null) {
+                getView().postDelayed(mShowSkeletonRunnable, 250);
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    private void cancelSkeletonSchedule() {
+        try {
+            if (mShowSkeletonRunnable != null && getView() != null) {
+                getView().removeCallbacks(mShowSkeletonRunnable);
+                mShowSkeletonRunnable = null;
+            }
+        } catch (Throwable ignored) {}
+    }
+
+    private void setSkeletonVisible(boolean visible) {
+        try {
+            View root = getView();
+            if (root == null || getContext() == null) {
+                return;
+            }
+
+            // البحث عن ProgressBar الأصلي في الواجهة لاستبداله بدون كسر الشجرة
+            View progress = root.findViewById(androidx.leanback.R.id.progress_bar);
+            if (progress != null) {
+                progress.setVisibility(View.GONE);
+            }
+
+            if (mSkeletonView == null && visible) {
+                // العثور على الحاوية الأب الآمنة (parent container)
+                View parentView = root.findViewById(androidx.leanback.R.id.rows_frame);
+                ViewGroup target = (parentView instanceof ViewGroup) ? (ViewGroup) parentView : (root instanceof ViewGroup ? (ViewGroup) root : null);
+                if (target != null) {
+                    mSkeletonView = LayoutInflater.from(getContext()).inflate(R.layout.skeleton_container, target, false);
+                    target.addView(mSkeletonView);
+                }
+            }
+
+            if (mSkeletonView != null) {
+                if (visible) {
+                    mSkeletonView.setVisibility(View.VISIBLE);
+                    AlphaAnimation shimmer = new AlphaAnimation(0.35f, 0.7f);
+                    shimmer.setDuration(900);
+                    shimmer.setRepeatMode(Animation.REVERSE);
+                    shimmer.setRepeatCount(Animation.INFINITE);
+                    mSkeletonView.startAnimation(shimmer);
+                } else {
+                    mSkeletonView.clearAnimation();
+                    mSkeletonView.setVisibility(View.GONE);
+                }
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Safe fallback: skeleton error suppressed to prevent crash: %s", t.getMessage());
+        }
+    }
 
     public void showProgressBar(boolean show) {
         if (show) {
