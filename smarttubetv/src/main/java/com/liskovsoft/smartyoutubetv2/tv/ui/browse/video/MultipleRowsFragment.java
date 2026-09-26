@@ -477,7 +477,7 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
                 mSkeletonView.setVisibility(View.GONE);
             }
         }
-    }
+    {
 
     private final class ItemViewLongPressedListener implements OnItemLongPressedListener {
         @Override
