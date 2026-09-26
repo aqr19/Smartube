@@ -381,15 +381,6 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         } catch (Throwable ignored) {}
     }
 
-    private void cancelSkeletonSchedule() {
-        try {
-            if (mShowSkeletonRunnable != null && getView() != null) {
-                getView().removeCallbacks(mShowSkeletonRunnable);
-                mShowSkeletonRunnable = null;
-            }
-        } catch (Throwable ignored) {}
-    }
-
   public void showProgressBar(boolean show) {
         if (show) {
             scheduleSkeleton();
