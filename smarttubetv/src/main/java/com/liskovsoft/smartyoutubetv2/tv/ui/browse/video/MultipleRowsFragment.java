@@ -458,26 +458,6 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
             Log.e(TAG, "Safe fallback: skeleton error suppressed: %s", t.getMessage());
         }
     }
-    }
-        if (mSkeletonView == null && visible) {
-            ViewGroup root = (ViewGroup) getView();
-            mSkeletonView = LayoutInflater.from(getContext()).inflate(R.layout.skeleton_container, root, false);
-            root.addView(mSkeletonView);
-        }
-        if (mSkeletonView != null) {
-            if (visible) {
-                mSkeletonView.setVisibility(View.VISIBLE);
-                AlphaAnimation shimmer = new AlphaAnimation(0.35f, 0.7f);
-                shimmer.setDuration(900);
-                shimmer.setRepeatMode(Animation.REVERSE);
-                shimmer.setRepeatCount(Animation.INFINITE);
-                mSkeletonView.startAnimation(shimmer);
-            } else {
-                mSkeletonView.clearAnimation();
-                mSkeletonView.setVisibility(View.GONE);
-            }
-        }
-    {
 
     private final class ItemViewLongPressedListener implements OnItemLongPressedListener {
         @Override
