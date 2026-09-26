@@ -362,8 +362,6 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         }
     }
 
-    private void scheduleSkeleton() {
-        cancelSkeletonSchedule();
         try {
             // تجنب تفعيل السكيليتون إذا كان هناك صفوف موجودة بالفعل
             if (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0)) {
