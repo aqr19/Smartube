@@ -362,22 +362,6 @@ public abstract class MultipleRowsFragment extends RowsSupportFragment implement
         }
     }
 
-        try {
-            // تجنب تفعيل السكيليتون إذا كان هناك صفوف موجودة بالفعل
-            if (mRowsAdapter != null && mRowsAdapter.size() > (mChannelHeaderCallback != null ? 1 : 0)) {
-                return;
-            }
-            mShowSkeletonRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    setSkeletonVisible(true);
-                }
-            };
-            if (getView() != null) {
-                getView().postDelayed(mShowSkeletonRunnable, 250);
-            }
-        } catch (Throwable ignored) {}
-    }
 
     private void scheduleSkeleton() {
         cancelSkeletonSchedule();
