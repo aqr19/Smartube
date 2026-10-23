@@ -63,11 +63,16 @@ public class AppUpdatePresenter extends BasePresenter<Void> implements AppUpdate
     public void onUpdateFound(String versionName, List<String> changelog, String apkPath) {
         if (mIsForceCheck) {
             LoadingManager.showLoading(getContext(), false);
-            showUpdateDialog(versionName, changelog, apkPath);
-        } else if (GeneralData.instance(getContext()).isOldUpdateNotificationsEnabled()) {
-            showUpdateDialog(versionName, changelog, apkPath);
-        } else {
+        }
+
+        if (getContext() == null) {
+            return;
+        }
+
+        if (getViewManager().isPlayerInForeground() || !Utils.isAppInForegroundFixed()) {
             pinUpdateSection(versionName, changelog, apkPath);
+        } else {
+            showUpdateDialog(versionName, changelog, apkPath);
         }
     }
 
