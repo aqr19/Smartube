@@ -581,14 +581,14 @@ public class BrowsePresenter extends BasePresenter<BrowseView> implements Sectio
     }
 
     public void pinItem(String title, int resId, ErrorFragmentData data) {
-        if (getView() == null) {
-            return;
-        }
-
         BrowseSection newSection = new BrowseSection(title.hashCode(), title, BrowseSection.TYPE_ERROR, resId, false, data);
         Helpers.removeIf(mErrorSections, section -> section.getId() == newSection.getId());
         mErrorSections.add(newSection);
-        getView().addSection(0, newSection);
+
+        // Keep startup notifications even if the browse view isn't ready yet.
+        if (getView() != null) {
+            getView().addSection(0, newSection);
+        }
     }
 
     private void appendToSections(String title, int resId, ErrorFragmentData data) {
