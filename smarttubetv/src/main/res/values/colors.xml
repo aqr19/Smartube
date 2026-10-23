@@ -60,7 +60,7 @@
     <color name="lb_speech_orb_not_recording">#161616</color>
     <color name="lb_speech_orb_not_recording_pulsed">#2C2C2C</color>
     <color name="lb_speech_orb_not_recording_icon">#F1F1F1</color>
-    <color name="lb_preference_decor_list_background">#121212</color>
+    <color name="lb_preference_decor_list_background">#0A0F12</color>
 
     <!-- Glass & Minimalist Surface Tokens (بدون أي تكرار) -->
     <color name="glass_canvas_base">#0A0A0A</color>
@@ -88,4 +88,22 @@
     <color name="glass_btn_normal">#26FFFFFF</color>
     <color name="glass_btn_focused">#66FFFFFF</color>
     <color name="glass_btn_pressed">#8CFFFFFF</color>
+
+    <!-- TV navigation and settings surfaces -->
+    <color name="tv_nav_default">#0A0F12</color>
+    <color name="tv_nav_selected">#142321</color>
+    <color name="tv_nav_focused">#1A302D</color>
+    <color name="tv_nav_focus_border">#FF62D6C5</color>
+    <color name="tv_nav_border">#2637A69A</color>
+    <color name="tv_nav_icon">#2637A69A</color>
+    <color name="tv_nav_icon_focused">#FF62D6C5</color>
+    <color name="tv_card_default">#FF171D20</color>
+    <color name="tv_card_focused">#FF203532</color>
+    <color name="tv_card_border">#2637A69A</color>
+    <color name="tv_card_focus_border">#FF62D6C5</color>
+    <color name="tv_card_text">#FFF1F5F4</color>
+    <color name="tv_card_text_focused">#FFFFFFFF</color>
+    <color name="tv_accent">#FF62D6C5</color>
+    <color name="tv_accent_soft">#8062D6C5</color>
+    <color name="lb_preference_item_category_text_color">#FF62D6C5</color>
 </resources>

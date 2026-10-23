@@ -35,6 +35,10 @@
         <item name="cardDefaultBackground">@color/card_default_background_dark</item>
         <item name="cardSelectedBackground">@color/card_selected_background_white</item>
         <item name="cardProgressStyle">?android:attr/progressBarStyleHorizontal</item>
+        <item name="playbackControlsButtonStyle">@style/Widget.App.PlaybackControlsButton</item>
+        <item name="playbackControlsIconHighlightColor">@color/tv_accent</item>
+        <item name="playbackProgressPrimaryColor">@color/tv_accent</item>
+        <item name="playbackProgressSecondaryColor">@color/tv_accent_soft</item>
         <item name="android:colorAccent" tools:targetApi="21">@color/fastlane_background</item>
         <item name="itemsVerticalGridStyle">@style/GridViewStyle</item>
         <item name="rowHorizontalGridStyle">@style/RowViewStyle</item>
@@ -90,7 +94,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <!-- AppDialogFragment background dimming -->
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:colorAccent" tools:targetApi="21">@color/fastlane_background</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/tv_accent</item>
         <item name="android:colorPrimary" tools:targetApi="21">@color/fastlane_background_dark</item>
         <!-- Disable activity transition animations -->
         <item name="android:windowAnimationStyle">@null</item>
@@ -101,6 +105,10 @@
     </style>
     <!-- Give ability to override style for different api -->
     <style name="App.Theme.Leanback.Preferences" parent="App.Theme.Leanback.Preferences.Base" />
+    <style name="Widget.App.PlaybackControlsButton" parent="Widget.Leanback.PlaybackControlsButtonStyle">
+        <item name="android:background">@drawable/glass_player_button_selector</item>
+        <item name="android:padding">8dp</item>
+    </style>
     <!-- Android 8 fallback -->
     <style name="App.Theme.Leanback.Preferences.Opaque" parent="App.Theme.Leanback.Preferences.Base">
         <!-- IllegalStateException: Only fullscreen opaque activities can request orientation -->

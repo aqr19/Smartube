@@ -18,13 +18,13 @@
     <dimen name="channel_card_height">30dp</dimen>
     <dimen name="channel_card_text_width">140dp</dimen>
 
-    <dimen name="settings_image_size">56dp</dimen>
+    <dimen name="settings_image_size">42dp</dimen>
     <!-- Old value: 15dp -->
-    <dimen name="settings_image_padding">8dp</dimen>
+    <dimen name="settings_image_padding">5dp</dimen>
     <dimen name="settings_grid_padding_bottom">24dp</dimen>
     <!-- Old value: 100dp -->
-    <dimen name="settings_card_width">128dp</dimen>
-    <dimen name="settings_card_height">100dp</dimen>
+    <dimen name="settings_card_width">136dp</dimen>
+    <dimen name="settings_card_height">108dp</dimen>
 
     <dimen name="pip_title_max_width">370dp</dimen>
     <dimen name="pip_title_size">24sp</dimen>
