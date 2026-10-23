@@ -3,32 +3,32 @@
     <!-- MOD: Focused player button color -->
     <color name="lb_control_button_color">#86EEEEEE</color>
 
-    <!-- Common colors - OLED Deep Dark (#0A0A0A) -->
-    <color name="default_background_gradient_start">#0A0A0A</color>
-    <color name="default_background_gradient_end">#0F0F0F</color>
-    <color name="fastlane_background">#26FFFFFF</color>
-    <color name="fastlane_background_dark">#0D0D0D</color>
-    <color name="default_light_grey">#161616</color>
-    <color name="search_opaque">#161616</color>
+    <!-- Midnight blue surfaces and accessible focus colors -->
+    <color name="default_background_gradient_start">#080D18</color>
+    <color name="default_background_gradient_end">#0D1626</color>
+    <color name="fastlane_background">#332E8BFF</color>
+    <color name="fastlane_background_dark">#101A2A</color>
+    <color name="default_light_grey">#19253B</color>
+    <color name="search_opaque">#111A2B</color>
     <color name="search_opaque_yellow">#F59E0B</color>
 
-    <!-- Card view colors - OLED Minimalist (#161616 to #242424) -->
-    <color name="card_selected_background_white">#242424</color>
-    <color name="card_selected_background_white_grey">#202020</color>
+    <!-- Card view colors - dark surfaces with a strong blue selection state -->
+    <color name="card_selected_background_white">#1556A8</color>
+    <color name="card_selected_background_white_grey">#1556A8</color>
     <color name="card_selected_background_yellow">#4DF59E0B</color>
-    <color name="card_selected_background_grey">#202020</color>
+    <color name="card_selected_background_grey">#1556A8</color>
     <color name="card_selected_text_black">#FFFFFF</color>
     <color name="card_selected_text_grey">#FFFFFF</color>
-    <color name="card_default_background">#161616</color>
-    <color name="card_default_background_dark">#161616</color>
-    <color name="card_default_text">#F1F1F1</color>
+    <color name="card_default_background">#111A2B</color>
+    <color name="card_default_background_dark">#111A2B</color>
+    <color name="card_default_text">#F5F8FF</color>
 
     <!-- Browse fragment colors - Main TV Screen -->
-    <color name="shelf_background">#0A0A0A</color>
-    <color name="shelf_background_dark">#0A0A0A</color>
-    <color name="icon_background">#161616</color>
-    <color name="icon_alt_background">#0F0F0F</color>
-    <color name="player_background">#E60A0A0A</color>
+    <color name="shelf_background">#080D18</color>
+    <color name="shelf_background_dark">#080D18</color>
+    <color name="icon_background">#19253B</color>
+    <color name="icon_alt_background">#111A2B</color>
+    <color name="player_background">#E6080D18</color>
 
     <!-- Scheme fallbacks -->
     <color name="scheme_grey_background">#0D0D0D</color>
@@ -39,14 +39,19 @@
     <color name="scheme_red_background_dark">#161616</color>
     <color name="scheme_red_shelf_background_dark">#0A0A0A</color>
     <color name="scheme_red_card_background_dark">#161616</color>
-    <color name="scheme_blue_background">#33B5E5</color>
-    <color name="scheme_blue_background_dark">#207EA1</color>
+    <color name="scheme_blue_background">#4DA3FF</color>
+    <color name="scheme_blue_background_dark">#1556A8</color>
+    <color name="cinema_background">#080D18</color>
+    <color name="cinema_surface">#111A2B</color>
+    <color name="cinema_surface_raised">#19253B</color>
+    <color name="cinema_focus">#4DA3FF</color>
+    <color name="cinema_focus_fill">#1556A8</color>
 
     <!-- Vineyard & Material Base -->
     <color name="black_87pc">#77000000</color>
-    <color name="primary_dark">#00796B</color>
-    <color name="primary_light">#B2DFDB</color>
-    <color name="primary">#009688</color>
+    <color name="primary_dark">#1556A8</color>
+    <color name="primary_light">#B8D8FF</color>
+    <color name="primary">#2563EB</color>
     <color name="white_87pc">#DDFFFFFF</color>
     <color name="tooltip_background_dark_mod">#e6616161</color>
     <color name="tooltip_background_light_mod">#e6FFFFFF</color>
@@ -63,29 +68,29 @@
     <color name="lb_preference_decor_list_background">#121212</color>
 
     <!-- Glass & Minimalist Surface Tokens (بدون أي تكرار) -->
-    <color name="glass_canvas_base">#0A0A0A</color>
-    <color name="glass_surface_default">#161616</color>
-    <color name="glass_surface_focused">#242424</color>
-    <color name="glass_surface_player_hud">#E60A0A0A</color>
-    <color name="glass_surface_dialog">#121212</color>
-    <color name="glass_border_subtle">#14FFFFFF</color>
-    <color name="glass_border_focused">#E0E0E0</color>
+    <color name="glass_canvas_base">#080D18</color>
+    <color name="glass_surface_default">#111A2B</color>
+    <color name="glass_surface_focused">#1556A8</color>
+    <color name="glass_surface_player_hud">#E6080D18</color>
+    <color name="glass_surface_dialog">#101A2A</color>
+    <color name="glass_border_subtle">#263E5D</color>
+    <color name="glass_border_focused">#4DA3FF</color>
     <color name="glass_glow_red">#66E50914</color>
-    <color name="glass_glow_cyan">#6600E5FF</color>
-    <color name="tv_text_primary">#F1F1F1</color>
-    <color name="tv_text_secondary">#AAAAAA</color>
-    <color name="tv_text_tertiary">#64748B</color>
+    <color name="glass_glow_cyan">#664DA3FF</color>
+    <color name="tv_text_primary">#F5F8FF</color>
+    <color name="tv_text_secondary">#C2CCDC</color>
+    <color name="tv_text_tertiary">#9AA9BF</color>
 
     <!-- Card Typography Tokens -->
-    <color name="lb_basic_card_title_text_color">#F1F1F1</color>
-    <color name="lb_basic_card_content_text_color">#AAAAAA</color>
+    <color name="lb_basic_card_title_text_color">#F5F8FF</color>
+    <color name="lb_basic_card_content_text_color">#C2CCDC</color>
 
     <!-- SponsorBlock & Utilities -->
     <color name="sponsorblock_sponsor">#10B981</color>
     <color name="sponsorblock_selfpromo">#F59E0B</color>
     <color name="sponsorblock_intro">#3B82F6</color>
     <color name="adblock_shield_active">#059669</color>
-    <color name="glass_btn_normal">#26FFFFFF</color>
-    <color name="glass_btn_focused">#66FFFFFF</color>
-    <color name="glass_btn_pressed">#8CFFFFFF</color>
+    <color name="glass_btn_normal">#263E5D</color>
+    <color name="glass_btn_focused">#664DA3FF</color>
+    <color name="glass_btn_pressed">#9956A8FF</color>
 </resources>

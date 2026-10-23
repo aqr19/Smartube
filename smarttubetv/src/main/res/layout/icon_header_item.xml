@@ -2,28 +2,28 @@
 <androidx.leanback.widget.NonOverlappingLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="54dp"
-    android:layout_marginTop="3dp"
-    android:layout_marginBottom="3dp"
+    android:layout_height="64dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="12dp"
-    android:paddingStart="10dp"
-    android:paddingEnd="16dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="18dp"
     android:gravity="center_vertical"
     android:background="@drawable/glass_sidebar_item_selector"
     android:orientation="horizontal">
 
     <!-- حاوية الأيقونة الزجاجية المربعة المستديرة (Nuvio Squircle) -->
     <FrameLayout
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/glass_sidebar_icon_bg">
 
         <ImageView
             android:id="@+id/header_icon"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
             android:contentDescription="@string/header_icon" />
     </FrameLayout>
@@ -32,10 +32,11 @@
         android:id="@+id/header_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="16dp"
         android:layout_gravity="center_vertical"
         android:singleLine="true"
-        android:maxWidth="160sp"
+        android:textSize="18sp"
+        android:maxWidth="180sp"
         android:textColor="@color/nuvio_nav_text_selector"
         android:marqueeRepeatLimit="marquee_forever"
         android:ellipsize="marquee"

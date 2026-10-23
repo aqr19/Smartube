@@ -24,7 +24,7 @@
         <item name="android:verticalSpacing">@dimen/browse_headers_vertical_spacing</item>
     </style>
 
-    <!-- Color scheme: Teal (Default) -->
+    <!-- Shared high-contrast base theme -->
     <style name="App.Theme.Leanback.Player" parent="Theme.Leanback">
     <item name="android:fontFamily">@font/ibm_arabic</item>
         <item name="fontFamily">@font/ibm_arabic</item>
@@ -219,37 +219,37 @@
 
     <!--  Color scheme: Dark Blue  -->
     <style name="App.Theme.Leanback.Blue.Browse" parent="App.Theme.Leanback.Browse">
-        <!--<item name="brandColor">@color/scheme_blue_background_dark</item>-->
         <item name="brandAccentColor">@color/scheme_blue_background</item>
-        <!--<item name="cardDefaultBackground">@color/scheme_blue_background_dark</item>-->
         <item name="android:colorAccent" tools:targetApi="21">@color/scheme_blue_background</item>
-        <item name="android:windowBackground">@color/scheme_grey_shelf_background_dark</item>
-        <item name="brandColor">@color/scheme_grey_background_dark</item>
-        <item name="shelfBackground">@color/scheme_grey_shelf_background_dark</item>
-        <item name="cardDefaultBackground">@color/scheme_grey_card_background_dark</item>
+        <item name="android:windowBackground">@color/cinema_background</item>
+        <item name="brandColor">@color/cinema_background</item>
+        <item name="shelfBackground">@color/cinema_background</item>
+        <item name="cardDefaultBackground">@color/cinema_surface</item>
+        <item name="cardSelectedBackground">@color/cinema_focus_fill</item>
     </style>
     <style name="App.Theme.Leanback.Blue.Player" parent="App.Theme.Leanback.Player">
-        <item name="shelfBackground">@color/scheme_grey_shelf_background_dark</item>
-        <!--<item name="cardDefaultBackground">@color/scheme_grey_card_background_dark</item>-->
-        <!--<item name="cardDefaultBackground">@color/scheme_blue_background_dark</item>-->
-        <item name="cardDefaultBackground">@color/scheme_grey_card_background_dark</item>
+        <item name="playbackProgressPrimaryColor">@color/scheme_blue_background</item>
+        <item name="playbackProgressSecondaryColor">@color/scheme_blue_background_dark</item>
+        <item name="playbackControlsIconHighlightColor">@color/scheme_blue_background</item>
+        <item name="shelfBackground">@color/cinema_background</item>
+        <item name="cardDefaultBackground">@color/cinema_surface</item>
+        <item name="cardSelectedBackground">@color/cinema_focus_fill</item>
         <item name="android:colorAccent" tools:targetApi="21">@color/scheme_blue_background</item>
     </style>
     <style name="App.Theme.Leanback.Blue.Preferences" parent="App.Theme.Leanback.Preferences">
         <item name="android:colorAccent" tools:targetApi="21">@color/scheme_blue_background</item>
-        <!--<item name="android:colorPrimary" tools:targetApi="21">@color/scheme_blue_background_dark</item>-->
-        <item name="android:colorPrimary" tools:targetApi="21">@color/scheme_grey_background</item>
+        <item name="android:colorPrimary" tools:targetApi="21">@color/cinema_background</item>
     </style>
     <!--  End Color scheme: Dark Blue  -->
 
     <!--  Color scheme: Dark Blue (OLED)  -->
     <style name="App.Theme.Leanback.Blue.OLED.Browse" parent="App.Theme.Leanback.Blue.Browse">
-        <item name="brandAccentColor">@color/semi_transparent</item>
-        <item name="cardSelectedBackground">@color/card_selected_background_white_grey</item>
+        <item name="brandAccentColor">@color/scheme_blue_background</item>
+        <item name="cardSelectedBackground">@color/cinema_focus_fill</item>
         <item name="appLogo">@null</item>
     </style>
     <style name="App.Theme.Leanback.Blue.OLED.Player" parent="App.Theme.Leanback.Blue.Player">
-        <item name="cardSelectedBackground">@color/card_selected_background_white_grey</item>
+        <item name="cardSelectedBackground">@color/cinema_focus_fill</item>
     </style>
     <!--  End Color scheme: Dark Blue (OLED)  -->
 </resources>

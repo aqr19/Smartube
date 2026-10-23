@@ -431,7 +431,7 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener 
         //mIsCardAnimatedPreviewsEnabled = Helpers.parseBoolean(split, 0, true);
         mVideoGridScale = Helpers.parseFloat(split, 1, 1.0f); // 4 cards in a row
         mUIScale = Helpers.parseFloat(split, 2, 1.0f);
-        mColorSchemeIndex = Helpers.parseInt(split, 3, 1);
+        mColorSchemeIndex = Helpers.parseInt(split, 3, 6);
         mIsCardMultilineTitleEnabled = Helpers.parseBoolean(split, 4, true);
         mChannelCategorySorting = Helpers.parseInt(split, 5, CHANNEL_SORTING_LAST_VIEWED);
         mPlaylistsStyle = Helpers.parseInt(split, 6, PLAYLISTS_STYLE_GRID);

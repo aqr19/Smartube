@@ -1,11 +1,5 @@
 # =========================================================
-# Build Debug APK — SmartTube (Modern fork)
-# يبني نسخة تجريبية (Debug) بتوقيع ثابت، وينشرها كرابط
-# تحميل مباشر بصفحة Releases باسم "latest" (يتحدث تلقائياً
-# كل مرة يشتغل فيها هذا الملف).
-#
-# ⚠️ مهم: لا تحذف خطوة "Publish direct download release"
-# تحتها — هذي اللي تنشر الرابط اللي نستخدمه بتطبيق Downloader.
+# Build and publish the TV build and updater manifest for every master push.
 # =========================================================
 
 name: Build Debug APK
@@ -42,17 +36,47 @@ jobs:
       - name: Grant Gradle permissions
         run: chmod +x gradlew
 
-      # 4) البناء الفعلي — نسخة Debug موقّعة بمفتاحنا الثابت
-      #    (fixed-debug.keystore) عشان التحديثات تركب فوق بعض
-      - name: Build Debug APK
-        run: ./gradlew clean assembleStfdroidDebug --stacktrace
+      - name: Set build version
+        run: |
+          echo "APP_VERSION_CODE=$((2435 + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
+          echo "APP_VERSION_NAME=32.$((45 + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
 
-      # 5) نشر ملف الـ APK كرابط تحميل مباشر بصفحة Releases
-      #    ⚠️ هذي الخطوة هي اللي لازم تبقى — لا تُحذف
+      # Keep the stable debug signing key so Android accepts in-place updates.
+      - name: Build Debug APK
+        run: ./gradlew clean assembleStfdroidDebug -PAPP_VERSION_CODE="$APP_VERSION_CODE" -PAPP_VERSION_NAME="$APP_VERSION_NAME" --stacktrace
+
+      - name: Prepare stable TV download and update manifest
+        env:
+          CHANGELOG: ${{ github.event.head_commit.message }}
+        run: |
+          apk_source=$(find smarttubetv/build/outputs/apk/stfdroid/debug -name '*universal*.apk' -print -quit)
+          test -n "$apk_source" && test -s "$apk_source"
+          cp "$apk_source" SmartTube_fdroid_latest_universal.apk
+          export DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/latest/SmartTube_fdroid_latest_universal.apk"
+          python3 - <<'PY'
+          import json
+          import os
+
+          version_name = os.environ["APP_VERSION_NAME"]
+          version_code = int(os.environ["APP_VERSION_CODE"])
+          changelog = os.environ.get("CHANGELOG", "").strip() or "Interface and player improvements."
+          manifest = {
+              "package": {"downloadUrl": os.environ["DOWNLOAD_URL"]},
+              version_name: {"versionCode": version_code, "changelog": [changelog]},
+          }
+          with open("smarttube_fdroid.json", "w", encoding="utf-8") as output:
+              json.dump(manifest, output, ensure_ascii=False, indent=2)
+              output.write("\n")
+          PY
+
+      # Keep these stable filenames: the app and Downloader code point here.
       - name: Publish direct download release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
-          name: SmartTube latest debug build
+          name: SmartTube TV latest build
           prerelease: true
-          files: smarttubetv/build/outputs/apk/stfdroid/debug/*universal*.apk
+          overwrite_files: true
+          files: |
+            SmartTube_fdroid_latest_universal.apk
+            smarttube_fdroid.json
