@@ -13,14 +13,14 @@
     <color name="search_opaque_yellow">#F59E0B</color>
 
     <!-- Card view colors - OLED Minimalist (#161616 to #242424) -->
-    <color name="card_selected_background_white">#242424</color>
-    <color name="card_selected_background_white_grey">#202020</color>
+    <color name="card_selected_background_white">@color/tv_card_focused</color>
+    <color name="card_selected_background_white_grey">@color/tv_card_focused</color>
     <color name="card_selected_background_yellow">#4DF59E0B</color>
     <color name="card_selected_background_grey">#202020</color>
     <color name="card_selected_text_black">#FFFFFF</color>
     <color name="card_selected_text_grey">#FFFFFF</color>
-    <color name="card_default_background">#161616</color>
-    <color name="card_default_background_dark">#161616</color>
+    <color name="card_default_background">@color/tv_card_default</color>
+    <color name="card_default_background_dark">@color/tv_card_default</color>
     <color name="card_default_text">#F1F1F1</color>
 
     <!-- Browse fragment colors - Main TV Screen -->
