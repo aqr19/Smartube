@@ -26,6 +26,7 @@
     android:background="@color/lb_preference_decor_list_background"
     android:orientation="vertical"
     android:transitionGroup="false"
+    android:layoutDirection="locale"
     >
 
     <FrameLayout

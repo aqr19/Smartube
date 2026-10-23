@@ -1,6 +1,7 @@
 package com.liskovsoft.smartyoutubetv2.tv.ui.browse.settings;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.leanback.widget.ArrayObjectAdapter;
@@ -48,6 +49,21 @@ public class SettingsGridFragment extends GridFragment implements SettingsSectio
 
         if (getMainFragmentAdapter().getFragmentHost() != null) {
             getMainFragmentAdapter().getFragmentHost().notifyDataReady(getMainFragmentAdapter());
+        }
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (getBrowseGrid() != null) {
+            int bottomPadding = getResources().getDimensionPixelSize(R.dimen.settings_grid_padding_bottom);
+            getBrowseGrid().setClipToPadding(false);
+            getBrowseGrid().setPadding(
+                    getBrowseGrid().getPaddingLeft(),
+                    getBrowseGrid().getPaddingTop(),
+                    getBrowseGrid().getPaddingRight(),
+                    getBrowseGrid().getPaddingBottom() + bottomPadding);
         }
     }
 

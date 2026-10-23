@@ -434,7 +434,7 @@
   <string name="signin_view_action_text">تم</string>
   <string name="require_checked"> \"%sيتطلب</string>
   <string name="msg_press_again_to_exit">اضغط مرة أخرى للخروج</string>
-  <string name="player_remaining_time">متبقي:\"%s</string>
+  <string name="player_remaining_time">متبقي: %s</string>
   <string name="player_ending_time">ينتهي عند \"%s</string>
   <string name="badge_new_content">محتوى جديد</string>
   <string name="badge_live">مباشر</string>

@@ -168,19 +168,9 @@ class TooltipPopup {
 
         final int yAbove = mTmpAnchorPos[1] + offsetAbove - tooltipOffset - tooltipHeight;
         final int yBelow = mTmpAnchorPos[1] + offsetBelow + tooltipOffset;
-        if (fromTouch) {
-            if (yAbove >= 0) {
-                outParams.y = yAbove;
-            } else {
-                outParams.y = yBelow;
-            }
-        } else {
-            if (yBelow + tooltipHeight <= mTmpDisplayFrame.height()) {
-                outParams.y = yBelow;
-            } else {
-                outParams.y = yAbove;
-            }
-        }
+        // Keep player control labels above their buttons so they cannot cover
+        // the secondary controls row (quality, time, and other indicators).
+        outParams.y = yAbove >= 0 ? yAbove : yBelow;
     }
 
     private static View getAppRootView(View anchorView) {

@@ -7,6 +7,7 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
+import android.text.SpannableStringBuilder;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -864,7 +865,8 @@ public class PlaybackFragment extends SeekModePlaybackFragment implements Playba
             result = TextUtils.concat(result, " ", Video.TERTIARY_TEXT_DELIM, " ", video.likeCount, Helpers.NON_BREAKING_SPACE, Helpers.THUMB_UP); // color of thumb cannot be changed
         }
 
-        if (getContext() != null && video.dislikeCount != null) {
+        if (getContext() != null && !TextUtils.isEmpty(video.dislikeCount)
+                && !TextUtils.isEmpty(video.dislikeCount.trim())) {
             result = TextUtils.concat(result, " ", Video.TERTIARY_TEXT_DELIM, " ", video.dislikeCount, Helpers.NON_BREAKING_SPACE, Helpers.THUMB_DOWN); // color of thumb cannot be changed
         }
 
@@ -872,7 +874,24 @@ public class PlaybackFragment extends SeekModePlaybackFragment implements Playba
             result = TextUtils.concat(result, " ", Video.TERTIARY_TEXT_DELIM, " ", video.subscriberCount.replace(" ", Helpers.NON_BREAKING_SPACE));
         }
 
-        return result;
+        return normalizeInfoDigits(result);
+    }
+
+    private CharSequence normalizeInfoDigits(CharSequence text) {
+        SpannableStringBuilder normalized = new SpannableStringBuilder(text);
+
+        for (int i = 0; i < normalized.length(); i++) {
+            char value = normalized.charAt(i);
+            if (value >= '\u0660' && value <= '\u0669') {
+                normalized.replace(i, i + 1, String.valueOf((char) ('0' + value - '\u0660')));
+            } else if (value >= '\u06F0' && value <= '\u06F9') {
+                normalized.replace(i, i + 1, String.valueOf((char) ('0' + value - '\u06F0')));
+            } else if (value == '\u066B') {
+                normalized.replace(i, i + 1, ".");
+            }
+        }
+
+        return normalized;
     }
 
     private CharSequence createNextTitle(Video video) {

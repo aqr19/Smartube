@@ -27,6 +27,7 @@
     android:elevation="@dimen/lb_preference_decor_elevation"
     android:orientation="vertical"
     android:transitionGroup="false"
+    android:layoutDirection="locale"
     >
 
     <FrameLayout
