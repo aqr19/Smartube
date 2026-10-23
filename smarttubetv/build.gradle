@@ -57,8 +57,9 @@ android {
         applicationId "app.smarttube"
         minSdkVersion project.properties.minSdkVersion
         targetSdkVersion project.properties.targetSdkVersion
-        versionCode 2435
-        versionName "32.45"
+        // CI increments these for each master build so installed TVs can update in place.
+        versionCode project.findProperty("APP_VERSION_CODE")?.toInteger() ?: 2435
+        versionName project.findProperty("APP_VERSION_NAME") ?: "32.45"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
 
