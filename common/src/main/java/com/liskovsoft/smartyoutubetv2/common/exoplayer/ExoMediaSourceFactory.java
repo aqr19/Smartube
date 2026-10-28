@@ -73,6 +73,10 @@ public class ExoMediaSourceFactory {
     }
 
     public MediaSource fromSabrFormatInfo(MediaItemFormatInfo formatInfo) {
+        MediaSource pushSource = com.google.android.exoplayer2.source.sabr.mediapush.MediaPushSourceBuilder.build(formatInfo);
+        if (pushSource != null) {
+            return pushSource;
+        }
         return buildSabrMediaSource(formatInfo);
     }
 
