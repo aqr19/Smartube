@@ -1,12 +1,12 @@
 # =========================================================
-# Build and publish TV APKs for master and the UI verification branch.
+# Build and publish TV APKs for master and the antigravity branch.
 # =========================================================
 
 name: Build Debug APK
 
 on:
   push:
-    branches: [ master, ui-redesign-test ]
+    branches: [ master, ui-redesign-test, antigravity ]
   workflow_dispatch:
 
 # لازم هذا السطر عشان نقدر ننشر Release
@@ -52,14 +52,15 @@ jobs:
           apk_source=$(find smarttubetv/build/outputs/apk/stfdroid/debug -name '*universal*.apk' -print -quit)
           test -n "$apk_source" && test -s "$apk_source"
           cp "$apk_source" SmartTube_fdroid_latest_universal.apk
-          export DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/latest/SmartTube_fdroid_latest_universal.apk"
+          cp "$apk_source" SmartTube_antigravity.apk
+          export DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/antigravity/SmartTube_antigravity.apk"
           python3 - <<'PY'
           import json
           import os
 
           version_name = os.environ["APP_VERSION_NAME"]
           version_code = int(os.environ["APP_VERSION_CODE"])
-          changelog = os.environ.get("CHANGELOG", "").strip() or "Interface and player improvements."
+          changelog = os.environ.get("CHANGELOG", "").strip() or "Antigravity Platypus Player Integration."
           manifest = {
               "package": {"downloadUrl": os.environ["DOWNLOAD_URL"]},
               version_name: {"versionCode": version_code, "changelog": [changelog]},
@@ -73,10 +74,11 @@ jobs:
       - name: Publish direct download release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: latest
-          name: SmartTube TV latest build
-          prerelease: true
+          tag_name: ${{ github.ref_name == 'antigravity' && 'antigravity' || 'latest' }}
+          name: SmartTube TV Antigravity build
+          prerelease: false
           overwrite_files: true
           files: |
+            SmartTube_antigravity.apk
             SmartTube_fdroid_latest_universal.apk
             smarttube_fdroid.json
