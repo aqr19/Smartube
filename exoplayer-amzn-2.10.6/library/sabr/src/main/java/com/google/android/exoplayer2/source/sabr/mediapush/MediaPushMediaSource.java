@@ -40,8 +40,6 @@ public class MediaPushMediaSource extends BaseMediaSource {
                 mDurationUs,
                 /* isSeekable= */ !mIsLive,
                 /* isDynamic= */ mIsLive,
-                /* isLive= */ mIsLive,
-                /* manifest= */ null,
                 /* tag= */ null
         );
         refreshSourceInfo(timeline, null);
